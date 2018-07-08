@@ -1,5 +1,6 @@
-from utils import all_models, optimizers, schedulers, device
-from utils import criterion, dataloader, save_boundary_plot
+from utils import all_models, optimizers, device
+from utils import criterion, dataloader, save_boundary_labels
+from utils import save_obj, load_obj
 
 def train(epoch):
     for i, (x,y) in enumerate(dataloader):
@@ -8,7 +9,6 @@ def train(epoch):
         y = y.to(device)
         for model in all_models:
             optimizer = optimizers[model.name]
-            scheduler = schedulers[model.name]
             optimizer.zero_grad()
             y_pred = model(x)
             loss = criterion(y_pred, y)
@@ -16,11 +16,11 @@ def train(epoch):
             optimizer.step()
             if i % 100 == 0:
                 print('Iteration: [{}], Model: [{}], Loss: [{}]'.format(i, model.name, loss.item()))
-            save_boundary_plot(model, epoch=epoch, iteration=i)
-        # if i%1000 == 0:
-            # scheduler.step()
+            if i % 4 == 0:
+                save_boundary_labels(model, epoch=epoch, iteration=i//4)
     return i
 
 if __name__ == '__main__':
-    for epoch in range(10):
+    for epoch in range(1):
         train(epoch)
+    save_obj()
