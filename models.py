@@ -20,6 +20,8 @@ class VanillaModel(nn.Module):
 
 vanilla_2h = VanillaModel(2)
 vanilla_3h = VanillaModel(3)
+vanilla_4h = VanillaModel(4)
+vanilla_5h = VanillaModel(5)
 
 class ResidualModel(nn.Module):
     def __init__(self, num_hidden=1):
@@ -45,4 +47,10 @@ class ResidualModel(nn.Module):
         x = self.linear(x)
         return self.sigmoid(x)
 
-residual = ResidualModel()
+residual_1h = ResidualModel()
+residual_2h = ResidualModel(2)
+residual_3h = ResidualModel(3)
+residual_4h = ResidualModel(4)
+
+all_models = [vanilla_2h, vanilla_3h, vanilla_4h, vanilla_5h,
+    residual_1h, residual_2h, residual_3h, residual_4h]

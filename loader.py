@@ -7,7 +7,7 @@ two_pi = 2 * np.pi
 
 class Point(Dataset):
     def __init__(self):
-        self.offset_and_length = (3,2)
+        self.offset_and_length = (1,2)
         self.inner_to_outer_ratio = 0.5
 
     def __len__(self):
