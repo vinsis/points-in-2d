@@ -20,3 +20,7 @@ def train(epoch):
         # if i%1000 == 0:
             # scheduler.step()
     return i
+
+if __name__ == '__main__':
+    for epoch in range(10):
+        train(epoch)
