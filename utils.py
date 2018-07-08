@@ -9,9 +9,11 @@ import matplotlib.pyplot as plt
 import os
 
 criterion = BCELoss()
+device = ['cpu','cuda'][torch.cuda.is_available()]
 
 optimizers, schedulers = {}, {}
 for model in all_models:
+    model = model.to(device)
     optimizer = Adam(model.parameters(), lr = 0.001)
     scheduler = lr_scheduler.ExponentialLR(optimizer, gamma = 0.8)
     optimizers[model.name] = optimizer
@@ -19,15 +21,15 @@ for model in all_models:
 
 outer_limit = sum(dataloader.dataset.offset_and_length) + 1
 points = product( np.arange(-outer_limit, outer_limit, 0.1), repeat=2 )
-points = torch.FloatTensor(list(points))
+points = torch.FloatTensor(list(points)).to(device)
 
 def get_boundary_labels(model, points=points):
     with torch.no_grad():
-        return model(points).numpy()
+        return model(points).cpu().numpy()
 
 def save_boundary_plot(model, epoch, iteration):
     labels = get_boundary_labels(model)
-    data = np.hstack([points.numpy(), labels])
+    data = np.hstack([points.cpu().numpy(), labels])
     filename = '{}_e{}_i{}.csv'.format(model.name, epoch, iteration)
     filename = os.path.join('data', filename)
     np.savetxt(filename, data, delimiter=',', fmt='%.3e')

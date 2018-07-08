@@ -1,9 +1,11 @@
-from utils import all_models, optimizers, schedulers
+from utils import all_models, optimizers, schedulers, device
 from utils import criterion, dataloader, save_boundary_plot
 
 def train(epoch):
     for i, (x,y) in enumerate(dataloader):
         y = y.unsqueeze(-1).float()
+        x = x.to(device)
+        y = y.to(device)
         for model in all_models:
             optimizer = optimizers[model.name]
             scheduler = schedulers[model.name]
