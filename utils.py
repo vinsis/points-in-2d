@@ -22,6 +22,7 @@ for model in all_models:
 outer_limit = sum(dataloader.dataset.offset_and_length) + 1
 points = product( np.arange(-outer_limit, outer_limit, 0.1), repeat=2 )
 points = torch.FloatTensor(list(points)).to(device)
+np.save(os.path.join('data', 'points.npy'), points.cpu().numpy())
 
 def get_boundary_labels(model, points=points):
     with torch.no_grad():
@@ -29,9 +30,10 @@ def get_boundary_labels(model, points=points):
 
 def save_boundary_plot(model, epoch, iteration):
     labels = get_boundary_labels(model)
-    data = np.hstack([points.cpu().numpy(), labels])
-    filename = '{}_e{}_i{}.csv'.format(model.name, epoch, iteration)
+    # data = np.hstack([points.cpu().numpy(), labels])
+    filename = '{}_e{}_i{}.npy'.format(model.name, epoch, iteration)
     filename = os.path.join('data', filename)
-    np.savetxt(filename, data, delimiter=',', fmt='%.3e')
+    np.save(filename, labels)
+    # np.savetxt(filename, data, delimiter=',', fmt='%.3e')
     # plt.scatter(data[:,0], data[:,1], c=data[:,2], s=1, cmap='viridis')
     # plt.savefig(filename)
