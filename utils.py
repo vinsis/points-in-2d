@@ -15,7 +15,7 @@ device = ['cpu','cuda'][torch.cuda.is_available()]
 optimizers, schedulers = {}, {}
 for model in all_models:
     model = model.to(device)
-    optimizer = Adam(model.parameters(), lr = 0.002)
+    optimizer = Adam(model.parameters(), lr = 0.02)
     optimizers[model.name] = optimizer
 
 outer_limit = sum(dataloader.dataset.offset_and_length) + 1
