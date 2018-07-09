@@ -8,6 +8,7 @@ Simple use-cases inspired from the paper ['ResNet with one-neuron hidden layers 
 ![](https://github.com/vinsis/points-in-2d/blob/master/images/resnet_1h.gif?raw=true)
 
 Note how the boundary seems to have four sides. Using a ResNet with 4 neurons in hidden layer gives a nice hexagon-ish boundary which is a better approximation:
+
 ![](https://github.com/vinsis/points-in-2d/blob/master/images/resnet_4h.gif?raw=true)
 
 2. Instead of an identity function `f(x) + x`, I tried adding x scaled by a factor: `f(x) + scale * x`. I added `scale` as a __learnable parameter__ to see if the network things a scaled version is better than an unscaled one. I might be biased, but I did get a faster convergence with a resnet having one-neuron hidden layer.
