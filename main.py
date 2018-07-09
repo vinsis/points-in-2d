@@ -15,7 +15,7 @@ def train(epoch):
             loss.backward()
             optimizer.step()
             if i % 100 == 0:
-                print('Iteration: [{}], Model: [{}], Loss: [{}]'.format(i, model.name, loss.item()))
+                print('Epoch: [{}], Iteration: [{}], Model: [{}], Loss: [{}]'.format(epoch, i, model.name, loss.item()))
             if i % 4 == 0:
                 save_boundary_labels(model, epoch=epoch, iteration=i//4)
     return i
