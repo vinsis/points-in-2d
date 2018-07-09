@@ -19,26 +19,26 @@ Note how the boundary seems to have four sides. Using a ResNet with 4 neurons in
 
 #### Actual boundary (`x`)
 
-![](https://github.com/vinsis/points-in-2d/blob/master/images/resnet_1.jpg?raw=true)
+![](https://github.com/vinsis/points-in-2d/blob/master/images/resnet_1.png?raw=true)
 
 #### `f(x)` (forward)
 
-![](https://github.com/vinsis/points-in-2d/blob/master/images/resnet_2.jpg?raw=true)
+![](https://github.com/vinsis/points-in-2d/blob/master/images/resnet_2.png?raw=true)
 
 #### `f(x) = f(x) + x` (adding identity)
 
-![](https://github.com/vinsis/points-in-2d/blob/master/images/resnet_3.jpg?raw=true)
+![](https://github.com/vinsis/points-in-2d/blob/master/images/resnet_3.png?raw=true)
 
 #### `g( f(x) )` (forward again)
 
-![](https://github.com/vinsis/points-in-2d/blob/master/images/resnet_4.jpg?raw=true)
+![](https://github.com/vinsis/points-in-2d/blob/master/images/resnet_4.png?raw=true)
 
 #### `g( f(x) ) + f(x)` (adding identity again)
 
-![](https://github.com/vinsis/points-in-2d/blob/master/images/resnet_5.jpg?raw=true)
+![](https://github.com/vinsis/points-in-2d/blob/master/images/resnet_5.png?raw=true)
 
 #### `h( g() )` (last linear layer)
 
-![](https://github.com/vinsis/points-in-2d/blob/master/images/resnet_6.jpg?raw=true)
+![](https://github.com/vinsis/points-in-2d/blob/master/images/resnet_6.png?raw=true)
 
 Note how the two classes are linearly separable. Vanilla networks with at most 2 hidden neurons fail at this task.
