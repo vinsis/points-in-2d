@@ -13,6 +13,7 @@ def create_video(model):
     fig = plt.figure()
     ax = fig.add_subplot(1,1,1)
     keys = [key for key in data.keys() if key.startswith(model.name)]
+    print('{} frames found'.format(len(keys)))
 
     def animate(i):
         ax.clear()
