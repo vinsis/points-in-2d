@@ -9,7 +9,8 @@ points = data['points']
 limit = -points[0][0]
 
 def create_video(model):
-    filename = os.path.join('videos', '{}.mp4'.format(model.name))
+    dirname = os.path.dirname(__file__)
+    filename = os.path.join(dirname, '..', 'videos', '{}.mp4'.format(model.name))
     fig = plt.figure()
     ax = fig.add_subplot(1,1,1)
     keys = [key for key in data.keys() if key.startswith(model.name)]
